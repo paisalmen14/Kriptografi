@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-from aes import aes_encrypt, aes_decrypt
+from aes import aes_encrypt, aes_decrypt, hex_to_bytes, bytes_to_text # Mengimpor helper
 from sbox import generate_sbox
 
 app = Flask(__name__)
@@ -22,7 +22,10 @@ def decrypt():
     cipher = data["cipher"]
     key = data["key"]
     mod = data["modified"]
-    result = aes_decrypt(cipher, key, mod)
+    
+    # Catatan: Fungsi aes_decrypt di backend/aes.py masih placeholder.
+    # Kita tetap memanggilnya agar alur aplikasi tidak terganggu.
+    result = aes_decrypt(cipher, key, mod) 
     return jsonify({"plain": result})
 
 @app.get("/sbox")
